@@ -107,7 +107,7 @@ if __name__ == '__main__':
 
     # Generate the dict with the failures and urls
     for build in builds:
-        taskurl = 'https://koji.rpmfusion.org/koji/taskinfo?taskID=%s' % build['task_id']
+        taskurl = 'http://koji.rpmfusion.org/koji/taskinfo?taskID=%s' % build['task_id']
         owner = build['owner_name']
         pkg = build['name']
         if not pkg in rebuilds:
