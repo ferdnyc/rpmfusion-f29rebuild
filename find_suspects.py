@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python2 -u
 #
 # Script to drive rpmfusion rebuild of packages corrupted by bad binutils
 # versions. Based on Fedora releng find-bad-builds.py and:
