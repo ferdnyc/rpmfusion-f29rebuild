@@ -74,12 +74,12 @@ def get_builds(kojisession, buildtag):
     for build in destbuilds:
         if (build['creation_time'] > epoch_start) and (build['creation_time'] < epoch_end):
             suspects.append(build)
-    print("Checking {} builds in tag {}".format(len(suspects),buildtag))
+    print("Checking {} builds in tag {}".format(len(suspects),buildtag), file=sys.stderr)
 
     needbuild = []
 
     for build in suspects:
-        sys.stdout.write('.')
+        sys.stderr.write('.')
         for task in kojisession.getTaskChildren(build['task_id']):
             if build in needbuild:
                 continue
@@ -89,8 +89,8 @@ def get_builds(kojisession, buildtag):
                         if (pkg['name'] == 'binutils') and (pkg['version'] == bad_binutils_ver):
                             if pkg['release'] in bad_binutils_rels:
                                 #print("task {}: found bad binutils version {}-{}".format(
-                                #       task['id'],pkg['version'],pkg['release']), file=sys.stderr,)
-                                sys.stdout.write('\b!')
+                                #       task['id'],pkg['version'],pkg['release']), file=sys.stderr)
+                                sys.stderr.write('\b!')
                                 needbuild.append(build)
     return needbuild
 
