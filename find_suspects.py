@@ -83,7 +83,7 @@ def get_builds(kojisession, buildtag):
         for task in kojisession.getTaskChildren(build['task_id']):
             if build in needbuild:
                 continue
-            if task['method'] == 'buildArch':
+            if (task['method'] == 'buildArch') and (task['arch'] != 'noarch'):
                 for rootid in kojisession.listBuildroots(taskID=task['id']):
                     for pkg in kojisession.listRPMs(componentBuildrootID=rootid['id']):
                         if (pkg['name'] == 'binutils') and (pkg['version'] == bad_binutils_ver):
